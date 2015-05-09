@@ -1,0 +1,50 @@
+{
+	"id": {
+		"description": "The ID of the user. Primary Key.",
+		"type": "integer",
+		"comment": "Eliminates the need to have our own arbitrary 'id' field, correlates back to the github user.",
+		"required": true
+	},
+	"login": {
+		"description": "The login name of the user.",
+		"type": "string",
+		"comment": "",
+		"required": false
+	},
+	"name": {
+		"description": "The user's human name.",
+		"type": "string",
+		"comment": "",
+		"required": false
+	},
+	"email": {
+		"description": "The user's email address",
+		"type": "string",
+		"comment": "",
+		"required": false
+	},
+	"location": {
+		"description": "The ID of the user's location. Foreign Key (Location table).",
+		"type": "string",
+		"comment": "",
+		"required": true
+	},
+	"company": {
+		"description": "The user's company.",
+		"type": "string",
+		"comment": "",
+		"required": false
+	},
+	"url": {
+		"description": "The API URL for the user.",
+		"type": "string",
+		"comment": "",
+		"required": false
+	},
+	"html_url": {
+		"description": "The HTML URL for the user.",
+		"type": "string",
+		"comment": "",
+		"required": false
+	}
+}

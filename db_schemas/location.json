@@ -1,0 +1,50 @@
+{
+	"id": {
+		"description": "The ID of the location. Primary Key.",
+		"type": "integer",
+		"comment": "",
+		"required": true
+	},
+	"latitude": {
+		"description": "The latitude of the location.",
+		"type": "integer",
+		"comment": "",
+		"required": true
+	},
+	"longitude": {
+		"description": "The longitude of the location.",
+		"type": "integer",
+		"comment": "",
+		"required": true
+	},
+	"country": {
+		"description": "The country of the location.",
+		"type": "string",
+		"comment": "",
+		"required": true
+	},
+	"state": {
+		"description": "The state of the location, if applicable.",
+		"type": "string",
+		"comment": "",
+		"required": false
+	},
+	"county": {
+		"description": "The county of the location, if applicable.",
+		"type": "string",
+		"comment": "",
+		"required": false
+	},
+	"locality": {
+		"description": "The locality (city or town) of the location.",
+		"type": "string",
+		"comment": "",
+		"required": false
+	},
+	"postal_code": {
+		"description": "The postal code of the location.",
+		"type": "integer",
+		"comment": "",
+		"required": false 
+	}
+}
