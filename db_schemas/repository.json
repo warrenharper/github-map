@@ -6,25 +6,25 @@
 		"required": true
 	},
 	"owner": {
-		"description": "The ID of the owner of the repository. Foreign Key (User table)."
+		"description": "The ID of the owner of the repository. Foreign Key (User table).",
 		"type": "integer",
 		"comment": "",
 		"required": false
 	},
 	"full_name": {
-		"description": "The full name of the repository, includes the owner's name."
+		"description": "The full name of the repository, includes the owner's name.",
 		"type": "string",
 		"comment": "Example: 'octocat/Hello-World'.",
 		"required": false
 	},
 	"description": {
-		"description": "The description of the repository."
+		"description": "The description of the repository.",
 		"type": "string",
-		"comment": "Example: 'octocat/Hello-World'."
+		"comment": "Example: 'octocat/Hello-World'.",
 		"required": false
 	},
 	"fork": {
-		"description": "A flag indicating whether or not this repository is a fork."
+		"description": "A flag indicating whether or not this repository is a fork.",
 		"type": "boolean",
 		"comment": "",
 		"required": false
