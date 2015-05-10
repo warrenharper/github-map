@@ -1,0 +1,44 @@
+{
+	"id": {
+		"description": "The ID of the repository. Primary Key.",
+		"type": "integer",
+		"comment": "Eliminates the need to have our own arbitrary 'id' field, correlates back to the github repository.",
+		"required": true
+	},
+	"owner": {
+		"description": "The ID of the owner of the repository. Foreign Key (User table).",
+		"type": "integer",
+		"comment": "",
+		"required": false
+	},
+	"full_name": {
+		"description": "The full name of the repository, includes the owner's name.",
+		"type": "string",
+		"comment": "Example: 'octocat/Hello-World'.",
+		"required": false
+	},
+	"description": {
+		"description": "The description of the repository.",
+		"type": "string",
+		"comment": "Example: 'octocat/Hello-World'.",
+		"required": false
+	},
+	"fork": {
+		"description": "A flag indicating whether or not this repository is a fork.",
+		"type": "boolean",
+		"comment": "",
+		"required": false
+	},
+	"url": {
+		"description": "The API URL for the repository.",
+		"type": "string",
+		"comment": "",
+		"required": false
+	},
+	"html_url": {
+		"description": "The HTML URL for the repository.",
+		"type": "string",
+		"comment": "",
+		"required": false
+	}
+}
