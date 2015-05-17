@@ -1,0 +1,7 @@
+packages:
+  - nginx
+  - postgresql
+  - libpq-dev # required for ansible
+  - python-psycopg2 # required for ansibled
+  
+  
