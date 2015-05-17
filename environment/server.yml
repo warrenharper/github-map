@@ -1,10 +1,8 @@
 - hosts: server
   user: ubuntu
   roles:
-    - {role: data}
-    - {role: server}
-    - {role: development}
-
+    - { role: setup }
+    
   vars_prompt:
     - name: "db_user"
       prompt: "Enter the database user name"
