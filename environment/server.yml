@@ -9,6 +9,6 @@
       default: "postgres"
       private: no
 
-    - name: "db_password"
+    - name: "db_pass"
       prompt: "Enter the password for the database"
       private: yes
