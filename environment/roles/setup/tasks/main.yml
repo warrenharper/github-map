@@ -5,6 +5,28 @@
   with_items: packages
   sudo: yes
 
+- name: create webroot
+  file:
+    path: /var/www/maps
+    mode: 755
+    state: directory
+    owner: www-data
+    group: www-data
+  sudo: yes
+  
+- name: nginx setup
+  template:
+    src: maps.conf.j2
+    dest: /etc/nginx/sites-available/maps.conf
+  sudo: yes
+
+- name: enable maps
+  file:
+    src: /etc/nginx/sites-available/
+    path: /etc/nginx/sites-enabled/maps.conf
+    state: link
+    force: yes
+  sudo: yes
 
   
   

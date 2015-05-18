@@ -2,6 +2,6 @@ packages:
   - nginx
   - postgresql
   - libpq-dev # required for ansible
-  - python-psycopg2 # required for ansibled
+  - python-psycopg2 # required for ansible
   
-  
+web_root: /var/www/maps  
