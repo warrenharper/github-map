@@ -44,7 +44,17 @@
   sudo: yes
   sudo_user: postgres
 
+- name: get rust installer
+  command: curl -f -L https://static.rust-lang.org/rustup.sh -O
+  args:
+    chdir: /tmp
 
+- name: install rust
+  command: /bin/sh rustup.sh -y
+  args:
+    chdir: /tmp
+    creates: /usr/local/lib/rustlib/uninstall.sh
+  sudo: yes
   
     
       
