@@ -3,5 +3,8 @@ packages:
   - postgresql
   - libpq-dev # required for ansible
   - python-psycopg2 # required for ansible
+  - build-essential # required to install redis
   
-web_root: /var/www/maps  
+web_root: /var/www/maps
+
+redis_port: 6379
