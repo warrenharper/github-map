@@ -1,0 +1,14 @@
+- hosts: server
+  user: ubuntu
+  roles:
+    - { role: setup }
+    
+  vars_prompt:
+    - name: "db_user"
+      prompt: "Enter the database user name"
+      default: "postgres"
+      private: no
+
+    - name: "db_pass"
+      prompt: "Enter the password for the database"
+      private: yes

@@ -1,0 +1,135 @@
+- name: Install packages
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items: packages
+  sudo: yes
+
+- name: create webroot
+  file:
+    path: /var/www/maps
+    mode: 755
+    state: directory
+    owner: www-data
+    group: www-data
+  sudo: yes
+  
+- name: nginx setup
+  template:
+    src: maps.conf.j2
+    dest: /etc/nginx/sites-available/maps.conf
+  sudo: yes
+
+- name: enable maps
+  file:
+    src: /etc/nginx/sites-available/
+    path: /etc/nginx/sites-enabled/maps.conf
+    state: link
+    force: yes
+  sudo: yes
+
+  
+- name: setup db
+  postgresql_db:
+    name: map
+  sudo: yes
+  sudo_user: postgres
+
+- name: add user
+  postgresql_user:
+    db: map
+    name: "{{ db_user }}"
+    password: "{{ db_pass }}"
+    priv: ALL
+  sudo: yes
+  sudo_user: postgres
+
+- name: get rust installer
+  command: curl -f -L https://static.rust-lang.org/rustup.sh -O
+  args:
+    chdir: /tmp
+
+- name: install rust
+  command: /bin/sh rustup.sh -y
+  args:
+    chdir: /tmp
+    creates: /usr/local/lib/rustlib/uninstall.sh
+  sudo: yes
+
+- name: get redis installer
+  get_url:
+    url: http://download.redis.io/redis-stable.tar.gz
+    dest:  /tmp/redis-stable.tar.gz
+
+- name: decompress redis
+  command: /bin/tar xzf redis-stable.tar.gz
+  args:
+    chdir: /tmp
+    creates: /tmp/redis-stable
+
+- name: install redis
+  command: make install
+  args:
+    chdir: /tmp/redis-stable
+  sudo: yes
+  
+- name: create redis config directories
+  file:
+    path: /{{ item }}/redis
+    state: directory
+  with_items:
+    - etc
+    - var
+  sudo: yes
+
+- name: copy init script
+  command: cp /tmp/redis-stable/utils/redis_init_script /etc/init.d/redis_{{redis_port}}
+  sudo: yes
+
+- name: Edit port in redis init script
+  lineinfile:
+    dest: "/etc/init.d/redis_{{redis_port}}"
+    line: "REDIS_PORT={{redis_port}}"
+    regexp: "^REDIS_PORT=[0-9]+$"
+    state: present
+  sudo: yes
+
+- name: Copy redis.conf
+  command: "cp /tmp/redis-stable/redis.conf /etc/redis/{{ redis_port }}.conf"
+  sudo: yes
+
+- name: Create redis working directory
+  file:
+    path: /var/redis/{{redis_port}}
+    state: directory
+  sudo: yes
+
+- name: Edit redis.conf file
+  lineinfile:
+    dest: /etc/redis/{{redis_port}}.conf
+    line: "{{ item.line }}"
+    regexp: "{{ item.regexp}}"
+    state: present
+  with_items:
+    - { regexp: "^daemonize no$", line: "daemonize yes" }
+    - { regexp: "^pidfile /var/run/.*\\.pid$", line: "pidfile /var/run/redis_{{ redis_port }}.pid"}
+    - { regexp: "^port \\d+$", line: "port {{redis_port}}" }
+    - { regexp: "^loglevel .*$", line: "loglevel notice" }
+    - { regexp: "^logfile .*$", line: "logfile /var/log/redis_{{redis_port}}.log" }
+    - { regexp: "^dir .*$", line: "dir /var/redis/6379" }
+  sudo: yes
+
+- name: Add redis init script to default runlevels
+  command: update-rc.d redis_{{redis_port}} defaults
+  sudo: yes
+    
+  
+    
+  
+  
+    
+  
+    
+  
+    
+      
