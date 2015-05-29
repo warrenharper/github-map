@@ -1,5 +1,3 @@
-CREATE DATABASE github_heatmap;
-
 CREATE TABLE locations (
     id integer PRIMARY KEY,
     latitude float(20),
