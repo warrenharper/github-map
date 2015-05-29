@@ -7,13 +7,13 @@
 	},
 	"latitude": {
 		"description": "The latitude of the location.",
-		"type": "integer",
+		"type": "float",
 		"comment": "",
 		"required": true
 	},
 	"longitude": {
 		"description": "The longitude of the location.",
-		"type": "integer",
+		"type": "float",
 		"comment": "",
 		"required": true
 	},
@@ -43,7 +43,7 @@
 	},
 	"postal_code": {
 		"description": "The postal code of the location.",
-		"type": "integer",
+		"type": "string",
 		"comment": "",
 		"required": false 
 	}
