@@ -31,13 +31,13 @@
   
 - name: setup db
   postgresql_db:
-    name: map
+    name: "{{ table_name }}"
   sudo: yes
   sudo_user: postgres
 
 - name: add user
   postgresql_user:
-    db: map
+    db: "{{ table_name }}"
     name: "{{ db_user }}"
     password: "{{ db_pass }}"
     priv: ALL

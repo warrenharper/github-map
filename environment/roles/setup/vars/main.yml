@@ -8,3 +8,5 @@ packages:
 web_root: /var/www/maps
 
 redis_port: 6379
+
+table_name: github_heatmap
